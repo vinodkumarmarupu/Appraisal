@@ -327,7 +327,6 @@
 
 	var apprisalListTL={
 	"managerEmail":localStorage.getItem("email"),
-	"status":"2",
 	"managerSubmitted":"1"
 	}
 	$http.post("http://localhost:3000/getApprisalBasedOnId",apprisalListTL).then (function(response){

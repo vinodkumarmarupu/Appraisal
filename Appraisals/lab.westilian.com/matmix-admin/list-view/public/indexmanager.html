@@ -86,7 +86,7 @@
                         <ul>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
-                                    <span class="user-info">Westilian Jaman <cite>jaman@mymail.com</cite></span>
+                                    <span class="user-info">username <cite>{{yourmail}}</cite></span>
                                     <span class="user-thumb"><img src="images/avatar/jaman.jpg" alt="image"></span>
                                 </a>
                                 <ul role="menu" class="dropdown-menu fadeInUp">
@@ -351,6 +351,7 @@ angular.module('myApp', [])
 .controller('ManagerHomeCtrl', function($scope,$http,$rootScope,$location){
 alert("hi");
 
+$scope.yourmail=localStorage.getItem('email');
 
 //pending apprisalListTL
 	var pendingApprisalListManager={
@@ -378,7 +379,7 @@ alert("hi");
 //updated apprisalListTL
 	var updatedApprisalListTL={
 	"managerEmail":localStorage.getItem("email"),
-	"status":"2"
+	"managerSubmitted":"1"
 	}
 
 

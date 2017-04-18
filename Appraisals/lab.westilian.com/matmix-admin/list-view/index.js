@@ -432,6 +432,7 @@ var getApprisalListById=function(json1,callback){
 			   console.log("err"+err);
 			   callback(err);
 		}else {
+			console.log(data);
 			if(data==""){
 				var datajson1={
 					"success":"noting was found"
@@ -504,6 +505,7 @@ app.post('/getApprisalBasedOnHRId',function(req,res){
 app.post('/getApprisalBasedOnId',function(req,res){
 	
 	var apprisalId=req.body;
+	console.log(JSON.stringify(apprisalId));
 	
 	getApprisalListById(apprisalId,function(apprisalData){
 		res.json(apprisalData);

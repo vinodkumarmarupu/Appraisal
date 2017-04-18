@@ -88,7 +88,7 @@
                         <ul>
                             <li class="dropdown">
                                 <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
-                                    <span class="user-info">Westilian Jaman <cite>jaman@mymail.com</cite></span>
+                                    <span class="user-info">username <cite>{{yourmail}}</cite></span>
                                     <span class="user-thumb"><img src="images/avatar/jaman.jpg" alt="image"></span>
                                 </a>
                                 <ul role="menu" class="dropdown-menu fadeInUp">
@@ -352,6 +352,7 @@ angular.module('myApp', [])
 .controller('TLHomeCtrl', function($scope,$http,$rootScope,$location){
 //alert("hi");
 
+$scope.yourmail=localStorage.getItem('email');
 
 //pending apprisalListTL
 	var pendingapprisalListTL={
@@ -378,13 +379,13 @@ angular.module('myApp', [])
 	
 	
 //updated apprisalListTL
-	var updateapprisalListTL={
+	var updatedApprisalListTL={
 	"TLemail":localStorage.getItem("email"),
-	"status":"1"
+	"TLSubmitted":"1"
 	}
 
 
-	$http.post("http://localhost:3000/getApprisalBasedOnId",updateapprisalListTL).then (function(response){
+	$http.post("http://localhost:3000/getApprisalBasedOnId",updatedApprisalListTL).then (function(response){
 
 	if(response.data.success=="noting was found"){
 
@@ -394,10 +395,9 @@ angular.module('myApp', [])
 	}
 	else{
 	$scope.updatedApprisalListTLLength=response.data.length;
-	
+	console.log(response.data.length);
 	}
 	})
-	
 	
 
 })

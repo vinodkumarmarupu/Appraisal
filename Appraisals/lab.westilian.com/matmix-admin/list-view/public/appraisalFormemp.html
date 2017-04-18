@@ -39,7 +39,7 @@
             <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-home"></i></span><span class="nav-label">Home</span></a>
                 
             </li>
-           <li><a href="#"><span class="nav-icon"><i class="fa fa-table"></i></span><span class="nav-label">Employee List</span></a>
+        
                
             </li>
 			 <li><a href="appraisalFormemp.html" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Self Appraisal Form</span></a>
@@ -47,15 +47,7 @@
             </li>
 					
             
-			<li><a href="#"><span class="nav-icon"><i class="fa fa-table"></i></span><span class="nav-label">Appraisals</span></a>
-                <ul>
-                    <li><a href="tables.html">Pending Appraisal List</a>
-                    </li>
-                    <li><a href="data-tables.html">Updated Appriasal List</a>
-                    </li>
-                   
-                </ul>
-            </li>
+			
         </ul>
     </div>
 </div>
@@ -447,6 +439,7 @@ $scope.result=response.data;
 $scope.result=response.data;
 console.log(JSON.stringify($scope.result));
 $scope.apprisal="Success";
+window.location.assign("/EMPhome");
 //$location.path("/login");
 }
 })
