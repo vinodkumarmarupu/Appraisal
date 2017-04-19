@@ -8,7 +8,7 @@ app.use(express.static(__dirname+'/public'));
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
-
+//MongoDB Connection
 mongoose.connect('mongodb://172.17.13.222:27017/AppraisalDB',function(err){
 	if(err){
 		console.log("DB Error"+err);
@@ -56,7 +56,7 @@ app.use(function (req, res, next) {
 });
 
 
-
+//Function for login
 var loginProfile=function(json1,callback){
 	db.find(json1,function(err,data){
 		if(err){
@@ -88,6 +88,8 @@ var loginProfile=function(json1,callback){
 		}
 	});
 };
+
+//Function to update profile
 var UpdateField=module.exports=function(updateProfilejson1,updateProfilejson2,callback){
 db.findOneAndUpdate(updateProfilejson1,updateProfilejson2,function(err,data){
 	
@@ -103,6 +105,7 @@ db.findOneAndUpdate(updateProfilejson1,updateProfilejson2,function(err,data){
 	
 })
 };
+//Function to create profile
 var createProfile=function(empData,callback){
 db.create(empData,function(err,data){
 		if(err){
@@ -118,6 +121,7 @@ db.create(empData,function(err,data){
 	});
 };
 /*Second schema CRUD methods*/
+//Creating forms
 var createForm=function(appraisalJSON,callback){
 db1.create(appraisalJSON,function(err,data){
 		if(err){
@@ -131,6 +135,7 @@ db1.create(appraisalJSON,function(err,data){
 		}
 	})
 };
+//API's
 /*Register an employee*/
 app.post('/empRegistrationApi',function(req,res){
 	console.log(JSON.stringify(req.body));
@@ -181,7 +186,7 @@ app.get('/loginApi',function(req,res){
 	
 });
 
-/*Employee List get of fields*/
+/*To get list of employees*/
 app.get('/empListApi',function(req,res){
 	
 
@@ -560,91 +565,25 @@ db1.create(updateProfilejson1,function(err,data){
 })
 };
 
-
-
-
-
-
-/* //update apprisal by TeamLead
-app.post('/updateApprisalByTL',function(req,res){
-	
-	var apprisalId={
-		"_id":req.body.id
-	}
-	
-	var updateTLCommentsjson={
-		"status":"1",
-		"TLcomment":req.body.tlcomments,
-		"TLrating":req.body.tlrating
-		
-	}
-console.log(JSON.stringify(updateTLCommentsjson));
-	updateApprisalById(apprisalId,updateTLCommentsjson,function(apprisalData){
-		res.json(apprisalData);
-		
-	});
-	
-	
-})
-
-//update apprisal by manager
-app.post('/updateApprisalByManager',function(req,res){
-	
-	var apprisalId={
-		"_id":req.body.id
-	}
-	
-	var updateManagerCommentsjson={
-		"status":"2",
-		"managerComment":req.body.managercomments,
-		"managerRating":req.body.managerrating
-		
-	}
-    console.log(JSON.stringify(updateManagerCommentsjson));
-	updateApprisalById(apprisalId,updateManagerCommentsjson,function(apprisalData){
-		res.json(apprisalData);
-		
-	});
-	
-	
-}) */
-
 //Create apprisal by Employee
 app.post('/createApprisalForm',function(req,res){
-	
-	
-	/*var apprisalId={
-		"_id":req.body._id
-	}*/
-	
 	updateCommentsjson=req.body;
-	
-	
-    //console.log(JSON.stringify(updateHRCommentsjson));
 	createApprisal(updateCommentsjson,function(apprisalData){
 		res.json(apprisalData);
 		
 	});
-	
-	
 })
+//update appraisal form
 app.post('/updateApprisal',function(req,res){
-	
 	
 	var apprisalId={
 		"_id":req.body._id
 	}
-	
 	updateCommentsjson=req.body;
-	
-	
-    //console.log(JSON.stringify(updateHRCommentsjson));
-	updateApprisalById(apprisalId,updateCommentsjson,function(apprisalData){
+    	updateApprisalById(apprisalId,updateCommentsjson,function(apprisalData){
 		res.json(apprisalData);
 		
 	});
-	
-	
 })
 
 //get Staus function
@@ -686,20 +625,13 @@ db.find(JSONdata,function(err,data){
 						callback(errjson1);
 					}else{
 						console.log(JSON.stringify(data));
-						callback(data);
-						
-						
+						callback(data);					
 					}
-			
 		})
-		 
-		 
-		 
-		}
-	
+	}	
 })
 };
-
+//Get status from appraisals appraisal
 app.post('/getApprisalFormStatus',function(req,res){
 	var JSONdata={
 		
